@@ -1,0 +1,50 @@
+<include href="category/filter.htm" />
+<br />	
+<table width="600" cellpadding="5" class="table table-hover table-bordered">
+    <thead>
+    <tr>
+        <th scope="col">Дата</th>
+        <th scope="col" style="width: 230px;">Комментарий</th>
+        <th scope="col">Сумма</th>
+        <th scope="col">Сумма, $</th>
+        <th scope="col">Категория</th>
+        <th scope="col">Кошелек</th>
+        <!-- <th scope="col">Аккаунт</th> -->
+        <th scope="col">Действие</th>
+    </tr>
+    </thead>
+
+    <tbody>
+	    <repeat group="{{ @flows.subset }}" value="{{ @flow }}">
+			<check if='{{ @flow.category_id != 10000}}'> <!-- скрываем из общего списка категорию подарки //HOLYAN: != 10 -->
+	        <tr <check if='{{ @flow.type == 1 }}'>class="success"</check>>
+	            <td>{{ trim(@flow.date) }}</td>
+	            <td>{{ trim(@flow.comment) }}</td>
+	            <td>{{ trim(@flow.currency_sum) }} {{ @currencies->retById(@flow.currency_id)->name}}</td>
+	            <td>{{ trim(@flow.sum) }}</td>
+	            <td>{{ @categories->retById(@flow.category_id)->name}}</td>
+	            <td>{{ @wallets->retById(@flow.wallet_id)->name}}</td>
+	            <!-- <td>{{ trim(@flow.account_id) }}</td> -->
+	            <td><a href="{{ @BASE.'/flow/update/'. @flow.id }}" class="btn btn-primary btn-xs"><i class="glyphicon glyphicon-edit"></i></a>
+	                &nbsp; <a href="{{ @BASE.'/flow/delete/'. @flow.id }}" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i></a></td>
+	        </tr>
+			</check>
+	    </repeat>
+    </tbody>
+
+</table>
+
+
+	  <ul class="pagination">
+  
+<check if="isset(@pages[@list.pos-1])"> 
+	    <li><a rel="{{@list.pos-1}}" href="{{ @pages[@list.pos-1]['link']}}">Пред</a></li>
+</check>	
+		<repeat group="{{ @pages }}" value="{{ @item  }}">
+			<li class="<check if='{{ @item.active == 1 }}'>active</check>"><a rel="{{ @item.count - 1 }}" href="{{ @item.link }}">{{ @item.count }}</a></li>
+		</repeat>
+<check if="isset(@pages[@list.pos+1])"> 
+	    <li><a rel="{{@list.pos+1}}" href="{{ @pages[@list.pos+1]['link']}}">След</a></li>
+</check>			
+
+	  </ul>

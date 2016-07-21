@@ -1,0 +1,10 @@
+        <ul class="nav nav-pills">
+
+            <li <check if="{{ @page_head == 'User List' }}">class="active"</check>><a href="{{ @BASE.'/' }}"><i class="glyphicon glyphicon-th-list"></i> Таблица расходов</a></li>
+            <li <check if="{{ @page_head == 'Create User' }}">class="active"</check>><a href="{{ @BASE.'/out/create' }}"><i class="glyphicon glyphicon-plus"></i> Добавить расход</a></li>
+
+            <check if="{{ @page_head == 'Update User' }}">
+            <li class="active"><a href="javascript:void(0);"><i class="glyphicon glyphicon-edit"></i> Редактировать расход</a></li>
+            </check>
+        </ul>
+		<br />

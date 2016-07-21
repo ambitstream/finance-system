@@ -1,0 +1,47 @@
+<form action="{{ @BASE.'/out/update' }}" method="post" class="form-horizontal">
+
+    <div class="input-prepend">
+        <span class="add-on"><i class="icon-user icon-black"></i> Дата</span>
+        <input type="text" id="date" name="date" value="{{ @POST.date }}" class="input-xlarge datepicker" />
+    </div><br/><br/>
+
+    <div class="input-prepend">
+        <span class="add-on add-on-area"><i class="icon-envelope icon-black"></i> Комментарий</span>
+        <textarea row="5" id="comment" name="comment" value="" class="input-xlarge" />{{ @POST.comment }}</textarea>
+    </div>
+    <br/><br/>
+
+    <div class="input-prepend">
+        <span class="add-on"><i class="icon-headphones icon-black"></i> Сумма</span>
+        <input type="text" id="sum" name="sum" value="{{ @POST.sum }}" class="input-xlarge" />
+    </div><br/><br/>
+
+    <div class="input-prepend">
+        <span class="add-on"><i class="icon-home icon-black"></i> Валюта</span>
+        <input type="text" id="currency_id" name="currency_id" class="input-xlarge" valuer="{{ @POST.currency_id }}" />
+    </div><br/><br/>
+
+    <div class="input-prepend">
+        <span class="add-on"><i class="icon-headphones icon-black"></i> Категория</span>
+        <input type="text" id="category_id" name="category_id" value="{{ @POST.category_id }}" class="input-xlarge" />
+    </div><br/><br/>
+	
+    <div class="input-prepend">
+        <span class="add-on"><i class="icon-headphones icon-black"></i> Кошелек</span>
+        <input type="text" id="wallet_id" name="wallet_id" value="{{ @POST.wallet_id }}" class="input-xlarge" />
+    </div><br/><br/>
+
+<!--     <div class="input-prepend">
+        <span class="add-on"><i class="icon-headphones icon-black"></i>  Аккаунт</span> -->
+        <input type="hidden" id="account_id" name="account_id" value="{{ @POST.account_id }}" class="input-xlarge" />
+   <!-- </div><br/><br/> -->
+	
+    <div class="control-group">
+        <div class="">
+            <input type="hidden" name="id" value="{{ @POST.id }}" />
+            <input type="hidden" name="update" value="update" />
+            <button type="submit" class="btn btn-primary"><i class="icon-edit icon-white"></i> Update</button>
+        </div>
+    </div>
+
+</form>

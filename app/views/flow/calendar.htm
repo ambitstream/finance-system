@@ -1,0 +1,17 @@
+<h3>Расходы по дням</h3>	
+<table  class="table" >
+	<tr>
+		<th>дата</th>
+		<th>Расходы</th>
+		<th>Расходы, $</th>
+	</tr>
+
+<repeat group="{{ @flowperday }}" value="{{ @item }}">	
+	<tr>
+		<td>{{ @item.date }}</td>
+		<td>{{ @item.cur_summa }} </td>
+		<td>{{ @item.summa }}</td>
+	</tr>
+</repeat>
+
+</table>

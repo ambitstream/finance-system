@@ -1,0 +1,28 @@
+
+<form action="" id="filter" method="get" accept-charset="utf-8">
+	<div class="row">
+		<div class="col-md-10">
+			
+
+			
+			<repeat group="{{@categories->all( isset($_GET['type'] ) ? $_GET['type'] : false )}}"  value="{{ @cat }}">
+				<label class="checkbox-inline">
+					<input type="checkbox" class="grouped-checkbox {{count(@cat)}}" value="{{ @cat.id }}" <check if="{{ @include != false }}">
+						<true>
+						<check if="{{in_array( @cat.id, @include)}}">checked="checked"</check>
+						</true>
+						<false>
+							checked="checked"
+						</false>
+					</check>  /> {{ @cat.name }}
+				</label>
+			</repeat>
+			<input type="hidden" name="include" id="include" />
+			
+		</div>
+		<div class="col-md-2">
+			<button onclick="initFilter(); return false;" class="btn btn-success"><i class="glyphicon glyphicon-refresh"></i>&nbsp;Применить</button><br />
+			<input type="checkbox" id="checkall" checked="checked" />&nbsp;<label for="checkall"><small>Выделить все</small></label>
+		</div>
+	</div>
+</form>

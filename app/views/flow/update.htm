@@ -1,0 +1,110 @@
+<div class="row">
+	<div class="col-md-3"></div>
+	<div class="col-md-6">
+		<form action="{{ @BASE.'/flow/update' }}" method="post" class="form-horizontal">
+
+
+			<div class="form-group">
+			    <div class="input-group">
+			        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i> Дата</span>
+			        <input type="text" id="date" name="date" value="{{ @POST.date }}" class="form-control datepicker" />
+			    </div>
+			</div>
+	
+		    <div class="form-group">
+			    <div class="input-group">
+			        <span class="input-group-addon input-group-addon-area"><i class="glyphicon glyphicon-pencil"></i> Комментарий</span>
+					<textarea row="5"  id="comment" name="comment" class="form-control">{{ @POST.comment }}</textarea>
+			    </div>
+		    </div>
+
+			<div class="form-group">
+			    <div class="input-group">
+			        <span class="input-group-addon"><i class="glyphicon glyphicon-plus"></i> Сумма</span>
+			        <input type="text" id="sum" name="sum" value="{{ @POST.currency_sum }}" class="form-control" />
+			    </div>
+			</div>
+
+			<div class="form-group">
+			    <div class="input-group">
+			        <span class="input-group-addon"><i class="glyphicon glyphicon-euro"></i> Валюта</span>
+					<select class="form-control" id="currency_id" name="currency_id">
+						<repeat group="{{@currencies->all()}}" value="{{ @cat }}">
+							<option value="{{ @cat.id }}"<check if="{{ @POST.currency_id == @cat.id }}">selected</check> >{{ @cat.name }}</option>							
+						</repeat>
+					</select>
+			    </div>
+			</div>
+		<!--	
+		    <div class="input-prepend">
+		        <span class="add-on"><i class="icon-home icon-black"></i> Валюта</span>
+		        <input type="text" id="currency_id" name="currency_id" class="input-xlarge" value="{{ @POST.currency_id }}" />
+		    </div><br/><br/>
+		-->
+	
+			<div class="form-group">
+			    <div class="input-group">
+			        <span class="input-group-addon"><i class="glyphicon glyphicon-list-alt"></i> Категория</span>
+					<select class="form-control" id="category_id" name="category_id">
+						<repeat group="{{@categories->all( isset($_GET['type'] ) ? $_GET['type'] : false )}}"  value="{{ @cat }}">
+							<option value="{{ @cat.id }}" <check if="{{ @POST.category_id == @cat.id }}">selected</check> >{{ @cat.name }}</option>							
+						</repeat>
+					</select>
+			    </div>
+			</div>
+	
+	
+		  <!--  <div class="input-prepend">
+		        <span class="add-on"><i class="icon-headphones icon-black"></i> Категория</span>
+				<select class="form-control" id="category_id" name="category_id">
+					<repeat group="{{@categories->all()}}" value="{{ @cat }}">
+						<option value="{{ @cat.id }}" <check if="{{ @POST.category_id == @cat.id }}">selected</check> >{{ @cat.name }}</option>							
+					</repeat>
+				</select>
+		    </div><br/><br/>-->
+	  
+	  
+			<div class="form-group">
+			    <div class="input-group">
+			        <span class="input-group-addon "><i class="glyphicon glyphicon-briefcase"></i> Кошелек</span>
+					<select class="form-control" id="wallet_id" name="wallet_id">
+						<repeat group="{{@wallets->all()}}"  value="{{ @cat }}">
+							<option value="{{ @cat.id }}" <check if="{{ @POST.wallet_id == @cat.id }}">selected</check> >{{ @cat.name }}</option>							
+						</repeat>
+					</select>
+			    </div>
+			</div>
+
+			<div class="form-group">
+			    <div class="input-group">
+			        <span class="input-group-addon "><i class="glyphicon glyphicon-briefcase"></i> Период</span>
+					<select class="form-control" id="period_id" name="period_id">
+						<repeat group="{{@periods->all()}}"  value="{{ @cat }}">
+							<option <check if="{{ @cat.id == 9 }}">selected</check> value="{{ @cat.id }}">{{ @cat.name }}</option>							
+						</repeat>
+					</select>
+			    </div>
+			</div>
+	
+		   <!-- <div class="input-prepend">
+		        <span class="add-on"><i class="icon-headphones icon-black"></i> Кошелек</span>
+		        <input type="text" id="wallet_id" name="wallet_id" value="{{ @POST.wallet_id }}" class="input-xlarge" />
+		    </div><br/><br/>-->
+
+		<!--     <div class="input-prepend">
+		        <span class="add-on"><i class="icon-headphones icon-black"></i>  Аккаунт</span> -->
+		        <input type="hidden" id="account_id" name="account_id" value="{{ @POST.account_id }}" class="input-xlarge" />
+		   <!-- </div><br/><br/> -->
+	
+		    <div class="control-group">
+		        <div class="">
+		            <input type="hidden" name="id" value="{{ @POST.id }}" />
+		            <input type="hidden" name="update" value="update" />
+		            <button type="submit" class="btn btn-primary"><i class="icon-edit icon-white"></i> Update</button>
+		        </div>
+		    </div>
+
+		</form>
+	</div>
+	<div class="col-md-3"></div>
+</div>		

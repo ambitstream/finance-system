@@ -1,0 +1,20 @@
+<div class="row">
+	<div class="col-md-3">
+		<a href="/" class="logo-link"></a>
+	</div>
+	<div class="col-md-9">
+        <ul class="nav nav-pills">
+
+            <li <check if="{{ @page_head == 'User List' }}">class="active"</check>><a href="{{ @BASE.'/' }}"><i class="glyphicon glyphicon-th-list"></i> Денежный поток</a></li>
+            <check if="{{ @page_head == 'Update Post' }}">
+            <li class="active"><a href="javascript:void(0);"><i class="glyphicon glyphicon-edit"></i> Редактировать расход</a></li>
+            </check>
+			<li><a href="{{ @BASE.'/flow/stat' }}"><i class="glyphicon glyphicon-stats"></i> Статистика</a></li>
+			<li><a href="{{ @BASE.'/flow/calendar' }}"><i class="glyphicon glyphicon-calendar"></i> Календарь</a></li>
+			
+            <li style="float:right" class="<check if="{{ @page_head == 'Create User' }}">active</check>"><a href="{{ @BASE.'/flow/create' }}?type=out"><i class="glyphicon glyphicon-minus"></i>Расход</a></li>
+            <li style="float:right" class="<check if="{{ @page_head == 'Create User' }}">active</check>"><a href="{{ @BASE.'/flow/create' }}?type=in"><i class="glyphicon glyphicon-plus"></i> Доход</a></li>
+        </ul>
+
+	</div>
+</div>

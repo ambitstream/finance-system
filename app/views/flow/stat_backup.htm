@@ -1,0 +1,161 @@
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">
+
+// Load the Visualization API and the piechart package.
+google.load('visualization', '1.0', {'packages':['corechart']});
+
+// Set a callback to run when the Google Visualization API is loaded.
+google.setOnLoadCallback(drawPieChart);
+google.setOnLoadCallback(drawColChart);
+
+function drawPieChart() {
+	var data = new google.visualization.DataTable();
+	data.addColumn('string', 'Topping');
+	data.addColumn('number', 'Slices');
+	data.addRows([
+		<repeat group="{{ @result }}" value="{{ @item }}">			
+		['{{ @item.name  }}', {{ @item.summa }}],
+		</repeat>
+	]);
+	new google.visualization.PieChart(document.getElementById('pieChart')).draw(data, {
+		'title':'Статистика расходов по категориям, $',
+		'width':1000,
+		'height':520,
+		'pieSliceText': 'value',
+	});
+}
+function drawColChart() {
+	var data = google.visualization.arrayToDataTable([
+		['Месяц', 'Доходы', 'Расходы'],
+		<repeat group="{{ @flowpermonth }}" value="{{ @item }}">			
+		['{{ @item.mnth2 }}', {{ @item.sum_in }}, {{ @item.sum_out }}],
+		</repeat>
+	]);
+
+	new google.visualization.ColumnChart(document.getElementById('colChart1')).draw(data, {
+		'title':'Расходы/доходы по месяцам, $',
+		'colors': ['#b3f01d', '#ffdd1f'],
+		'hAxis': {title: 'Year', titleTextStyle: {color: 'red'}}
+	});
+      
+	var data2 = google.visualization.arrayToDataTable([
+		['Дата', 'Расходы', { role: 'style' }],
+		<repeat group="{{ @outcomeperday }}" value="{{ @item }}">	
+		<check if="{{ @item.sum >= 40 }}">
+		<true>['{{ @item.date }}', 40, '#ff9a1f'],</true>
+		</check>
+		<check if="{{ @item.sum > 10 &&  @item.sum < 40 }}">
+		<true>['{{ @item.date }}', {{ @item.sum }}, '#ffdd1f'],</true>
+		</check>
+		<check if="{{ @item.sum <= 10 }}">
+		<true>['{{ @item.date }}', {{ @item.sum }}, '#b3f01d'],</true>
+		</check>
+		</repeat>
+	]);
+      
+	new google.visualization.ColumnChart(document.getElementById('colChart2')).draw(data2, {
+		'title':'Расходы ежедневно, $',
+		'colors': ['#b3f01d'],
+		'hAxis': {title: 'Date', titleTextStyle: {color: 'red'}}
+	});
+		
+    
+	// var data3 = google.visualization.arrayToDataTable([
+	// 	['Неделя', 'Расходы', 'Категория' ],
+	// 	<repeat group="{{ @chartPerWeek }}" value="{{ @item }}">
+	// 		[{{ @item.week }}, {{ @item.sum }},  {{ @item.cat_id }}],
+	// 	</repeat>
+	// ]);
+    
+	// new google.visualization.ColumnChart(document.getElementById('colChart3')).draw(data3, {
+	// 	'title':'Расходы понедельно, $',
+	// 	'colors': ['#b3f01d'],
+	// 	'hAxis': {title: 'Date', titleTextStyle: {color: 'red'}}
+	// });
+	
+		
+}
+</script>
+
+
+
+
+
+
+<h3>Средний расход в месяц</h3>
+
+<table id="aver_by_cats" class="table  swap-table-data" style="">
+	<tr>
+		<th><div>Категория</div></th>
+		<repeat group="{{ @periods_average[0] }}" value="{{ @item }}">	
+			<td><div>{{ @categories->retById(@item['category_id'])->name}}</div></td>
+		</repeat>
+
+		<td>Средний расход в месяц<br />(без крупных расходов и виз)</td>
+		<td>Средний расход в месяц<br />(всего)</td>
+	</tr>
+	
+	<repeat group="{{ @periods }}" value="{{ @period_item }}">
+	
+		<tr>
+			<th>{{ @period_item['name'] }}</th>
+			
+			<repeat group="{{ @periods_average[@period_item['id']-1] }}" value="{{ @average }}">
+				<check if="{{ @average['category_average'] != NULL}}">
+					<true><td>{{ round(@average['category_average']*30) }}</td></true>
+					<false><td>0</td></false>
+				</check>
+			</td>
+		</repeat>
+			
+			
+		<repeat group="{{ @periods_monthly_average[@period_item['id']-1] }}" value="{{ @monthly_average }}">
+			<td><pre>{{ round(@monthly_average['value'])*30 }}</pre></td>
+		</repeat>
+			
+		<repeat group="{{ @periods_total_average[@period_item['id']-1] }}" value="{{ @total_average }}">
+			<td><pre>{{ round(@total_average['value'])*30 }}</pre></td>
+		</repeat>
+			
+	</tr>
+</repeat>
+		
+		
+		
+</table>
+
+<div style="clear:both" id="pieChart" style="border: 1px dotted grey"></div>
+<div id="colChart1" style="height: 300px; border: 1px dotted grey"></div>
+
+<table  class="table">
+<repeat group="{{ @averinpermonth }}" value="{{ @item }}">
+	<tr>
+		<td>Средний доход в месяц</td>
+		<td>{{ @item.averbymonth }}</td>
+	</tr>
+</repeat>
+<repeat group="{{ @averoutpermonth }}" value="{{ @item }}">
+	<tr>
+		<td>Средний расход в месяц</td>
+		<td>{{ @item.averbymonth }}</td>
+	</tr>
+</repeat>
+<repeat group="{{ @total_in }}" value="{{ @item }}">
+	<tr>
+		<td>Всего доход</td>
+		<td>{{ @item.total_in }}</td>
+	</tr>
+</repeat>
+<repeat group="{{ @total_out }}" value="{{ @item }}">
+	<tr>
+		<td>Всего расход</td>
+		<td>{{ @item.total_out }}</td>
+	</tr>
+</repeat>
+</table>
+ 
+
+<div id="colChart2" style="height: 300px; border: 1px dotted grey"></div>
+
+<!-- <div id="colChart3" style="height: 300px; border: 1px dotted grey"></div> -->
+	

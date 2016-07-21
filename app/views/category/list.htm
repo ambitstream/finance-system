@@ -1,0 +1,5 @@
+<ul>
+    <repeat group="{{ @categories }}" value="{{ @category }}">
+        <li>{{ trim(@category.id) }} - {{ trim(@category.name) }}</li>
+    </repeat>
+</ul>   

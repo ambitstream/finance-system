@@ -1,0 +1,73 @@
+<div class="row">
+	<div class="col-md-6">
+		<form action="{{ @BASE.'/out/create' }}" method="post">
+
+			<div class="form-group">
+			    <div class="input-group">
+			        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i> Дата</span>
+			        <input type="text" id="date" name="date" value="" class="form-control datepicker" />
+			    </div>
+			</div>
+		    <div class="form-group">
+			    <div class="input-group">
+			        <span class="input-group-addon input-group-addon-area"><i class="glyphicon glyphicon-pencil"></i> Комментарий</span>
+					<textarea row="5"  id="comment" name="comment" class="form-control"></textarea>
+			    </div>
+		    </div>
+			<div class="form-group">
+			    <div class="input-group">
+			        <span class="input-group-addon"><i class="glyphicon glyphicon-plus"></i> Сумма</span>
+			        <input type="text" id="sum" name="sum" value="" class="form-control" />
+			    </div>
+			</div>
+			<div class="form-group">
+			    <div class="input-group">
+			        <span class="input-group-addon"><i class="glyphicon glyphicon-euro"></i> Валюта</span>
+			       <input type="text" id="currency_id" name="currency_id" value="1" class="form-control" />
+			    </div>
+			</div>
+			<div class="form-group">
+			    <div class="input-group">
+			        <span class="input-group-addon"><i class="glyphicon glyphicon-list-alt"></i> Категория</span>
+					<select class="form-control" id="category_id" name="category_id">
+						<option value="1">Разное</option>
+						<option value="2">Продукты</option>
+						<option value="3">Транспорт</option>
+						<option value="4">Развлечения</option>
+						<option value="5">Красота, здоровье, хозтовары</option>
+						<option value="6">Столовые, еда вне дома</option>
+						<option value="7">Автомобиль</option>
+						<option value="8">Благотворительность</option>
+						<option value="9">Аренда интернет связь</option>
+						<option value="10">Подарки</option>
+						<option value="11">Одежда обувь</option>
+					</select>
+			    </div>
+			</div>
+			<div class="form-group">
+			    <div class="input-group">
+			        <span class="input-group-addon "><i class="glyphicon glyphicon-briefcase"></i> Кошелек</span>
+			        <input type="text" id="wallet_id" name="wallet_id" value="1" class="form-control" />
+			    </div>
+			</div>
+		    <!-- 
+			<div class="form-group">	
+				<div class="input-group">
+		        <span class="input-group-addon "><i class="icon-home icon-black"></i> Аккаунт</span> -->
+		        <input type="hidden" id="account_id" name="account_id" value="1" class="form-control" />
+		    <!-- </div>
+			</div> -->
+			<div class="form-group">
+			    <div class="control-group">
+			        <div class="">
+			            <input type="hidden" name="create" value="create" />
+			            <button type="submit" class="btn btn-primary"><i class="icon-ok icon-white"></i> Добавить запись</button>
+			        </div>
+			    </div>
+			</div>
+		</form>
+	</div>
+	<div class="col-md-6">
+
+	</div>
+</div>		

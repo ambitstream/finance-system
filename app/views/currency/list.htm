@@ -1,0 +1,5 @@
+<ul>
+    <repeat group="{{ @currencies }}" value="{{ @currency }}">
+        <li>{{ trim(@currency.id) }} - {{ trim(@currency.name) }}</li>
+    </repeat>
+</ul>   

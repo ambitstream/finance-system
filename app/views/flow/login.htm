@@ -1,0 +1,32 @@
+
+
+
+<h2>Авторизация</h2>
+<p>Войдите  в систему используя логин и пароль</p>
+<br />
+<div class="row">
+	<div class="col-md-4">
+		<form action="{{ @BASE.'/login' }}" method="post" id="authorization" role="form" accept-charset="utf-8">
+
+		  <div class="form-group">
+		    <label for="login">Логин</label>
+
+		      <input class="form-control" type="text" id="login" name="login" placeholder="Логин">
+
+		  </div>
+		  <div class="form-group">
+		    <label for="password">Пароль</label>
+
+		      <input class="form-control" type="password" id="password" name="password" placeholder="Пароль">
+
+		  </div>
+		  <div class="form-group">
+		      <button type="submit" class="btn" name="autorize">Войти</button>
+
+		  </div>
+		</form>
+	</div>
+	<div class="col-md-4"></div>
+	<div class="col-md-4"></div>
+</div>
+
