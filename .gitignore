@@ -30,3 +30,5 @@ Thumbs.db
 .hg
 .idea
 .svn
+tmp
+config/config.ini
