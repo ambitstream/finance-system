@@ -9,10 +9,11 @@
 
 ## Installation:
 1. Clone this repo.
-2. Import database from /db/starter_db.sql
-3. Enter your database's host, dbname, user, pass in /config/config.ini
-4. Start Apache server.
-5. Run your project folder in browser
-6. Login to system with:
+2. Create folder named 'tmp' in root of project and make it writeble.
+3. Create local database 'finance_system' and import tables from /db/starter_db.sql
+4. Enter your database's host, dbname, user, pass in /config/config.ini
+5. Create virtual host (for example 'finance.local') and start Apache server.
+6. Run virtual host ('finance.local') in browser
+7. Login to system with:
 	- Login: test@inbox.com
 	- Password: 12345
