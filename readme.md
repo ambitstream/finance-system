@@ -1,4 +1,4 @@
-[![Finance Managment System](ui/img/logo-web.png)]
+![Finance Managment System](ui/img/logo-web.png)
 
 *Home finance managment system designed for own usage. You can add outcomes/incomes to common finance flow with custom categories. Allows using multiple currenices and different time-periods. Flexible filter allows you to organize your data with any category and periods, and make comparison. All calculations occurs with main currency (USD). Language - russian.*
 
